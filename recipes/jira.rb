@@ -32,20 +32,11 @@ end
     end
 end
 
-
-# Move logging from local dir (to /var/log)
-jira_local_logs = ::File.join(node['atlassian']['jira']['jira_dir'], 'logs')
-
-directory jira_local_logs do
-    action :delete
-    only_if {not ::File.symlink?(jira_local_logs) and ::File.directory?(jira_local_logs)}
-end
-
-link jira_local_logs do
+dir_to_link ::File.join(node['atlassian']['jira']['jira_dir'], 'logs') do
     to node['atlassian']['jira']['log_dir']
 end
 
-extract_mysql_connector node['atlassian']['jira']['mysql_connector_jar_path'] do
+put_mysql_connector node['atlassian']['jira']['mysql_connector_jar_path'] do
  service "runit_service[jira]"
 end
 

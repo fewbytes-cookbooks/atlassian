@@ -41,20 +41,11 @@ template node['atlassian']['confluence']['confluence_init_path'] do
    notifies :restart, "runit_service[confluence]"
 end
 
-
-# Move logging from local dir (to /var/log)
-confluence_local_logs = ::File.join(node['atlassian']['confluence']['confluence_dir'], 'logs')
-
-directory confluence_local_logs do
-    action :delete
-    only_if {not ::File.symlink?(confluence_local_logs) and ::File.directory?(confluence_local_logs)}
-end
-
-link confluence_local_logs do
+dir_to_link ::File.join(node['atlassian']['confluence']['confluence_dir'], 'logs') do
     to node['atlassian']['confluence']['log_dir']
 end
 
-extract_mysql_connector node['atlassian']['confluence']['mysql_connector_jar_path'] do
+put_mysql_connector node['atlassian']['confluence']['mysql_connector_jar_path'] do
  service "runit_service[confluence]"
 end
 

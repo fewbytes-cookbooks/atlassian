@@ -5,6 +5,7 @@ default['atlassian']['mysql_connector']['checksum'] = 'eb33f5e77bab05b6b27f709da
 default['atlassian']['mysql_connector']['jar_file'] = "mysql-connector-java-#{node['atlassian']['mysql_connector']['version']}-bin.jar"
 default['atlassian']['mysql_connector']['jar_path_in_tgz'] = "mysql-connector-java-#{node['atlassian']['mysql_connector']['version']}/#{node['atlassian']['mysql_connector']['jar_file']}"
 default['atlassian']['mysql_connector']['tgz_path'] = ::File.join(Chef::Config['file_cache_path'], node['atlassian']['mysql_connector']['tgz_file'])
+default['atlassian']['mysql_connector']['jar_path'] = ::File.join(Chef::Config['file_cache_path'], node['atlassian']['mysql_connector']['jar_file'])
 
 default['atlassian']['db']['server'] = 'dbserver'
 default['atlassian']['db']['port'] = '3306'
