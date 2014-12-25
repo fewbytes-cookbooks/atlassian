@@ -5,8 +5,6 @@ define :put_mysql_connector, :service => nil do
     remote_file params[:name] do 
         source ::File.join("file://", node['atlassian']['mysql_connector']['jar_path'])
 
-        unless params[:service].nil?
-            notifies :restart, params[:service]
-        end
+        notifies :restart, params[:service] unless params[:service]
     end
 end

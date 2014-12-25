@@ -12,5 +12,6 @@ bash 'extract_connector' do
         tar --strip-components 1 -C #{dest_dir} -xzf #{node['atlassian']['mysql_connector']['tgz_path']} #{node['atlassian']['mysql_connector']['jar_path_in_tgz']}
         chmod 0644 #{node['atlassian']['mysql_connector']['jar_path']}
     EOH
-    not_if { ::File.exists?(node['atlassian']['mysql_connector']['jar_path']) }
+
+    creates node['atlassian']['mysql_connector']['jar_path']
 end

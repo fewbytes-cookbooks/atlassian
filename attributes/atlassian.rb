@@ -1,3 +1,5 @@
+include_attribute "ark"
+
 default['atlassian']['mysql_connector']['version'] = '5.1.34'
 default['atlassian']['mysql_connector']['tgz_file'] = "mysql-connector-java-#{node['atlassian']['mysql_connector']['version']}.tar.gz"
 default['atlassian']['mysql_connector']['url'] = "http://cdn.mysql.com/Downloads/Connector-J/#{node['atlassian']['mysql_connector']['tgz_file']}"

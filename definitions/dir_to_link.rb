@@ -2,9 +2,7 @@
 # :name - empty dir to replace with link
 # :to - link target
 define :dir_to_link, :to => nil do
-    if(params[:to].nil?) then
-        raise 'you must specify link target'
-    end
+    raise 'you must specify link target' unless params[:to]
 
     directory params[:name] do
         action :delete
