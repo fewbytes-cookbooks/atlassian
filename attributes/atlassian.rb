@@ -1,4 +1,7 @@
 include_attribute "ark"
+include_attribute "nginx"
+
+default['nginx']['default_site_enabled'] = false
 
 default['atlassian']['mysql_connector']['version'] = '5.1.34'
 default['atlassian']['mysql_connector']['tgz_file'] = "mysql-connector-java-#{node['atlassian']['mysql_connector']['version']}.tar.gz"
@@ -14,7 +17,10 @@ default['atlassian']['db']['port'] = '3306'
 default['atlassian']['db']['base_url'] = "jdbc:mysql://#{node['atlassian']['db']['server']}:#{node['atlassian']['db']['port']}/"
 default['atlassian']['db']['params'] = 'useUnicode=true&amp;characterEncoding=UTF8&amp;sessionVariables=storage_engine=InnoDB'
 
+
 # Confluence
+default['atlassian']['confluence']['servername'] = 'confluence.mydomain.com'
+default['atlassian']['confluence']['port'] = '8090'
 default['atlassian']['confluence']['url'] = 'http://downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-5.6.5.tar.gz'
 default['atlassian']['confluence']['version'] = '5.6.5'
 default['atlassian']['confluence']['checksum'] = '013b9fc8d20f5947637abefea1386532bb484134de57a70f7fd78d177352bd4d'
@@ -31,6 +37,8 @@ default['atlassian']['confluence']['confluence_init_path'] = ::File.join(default
 default['atlassian']['confluence']['mysql_connector_jar_path'] = ::File.join(node['atlassian']['confluence']['lib_dir'], node['atlassian']['mysql_connector']['jar_file'])
 
 # Jira
+default['atlassian']['jira']['servername'] = 'jira.mydomain.com'
+default['atlassian']['jira']['port'] = '8080'
 default['atlassian']['jira']['url'] = 'http://downloads.atlassian.com/software/jira/downloads/atlassian-jira-6.3.12.tar.gz'
 default['atlassian']['jira']['version'] = '6.3.12'
 default['atlassian']['jira']['checksum'] = 'e25469a801c6630e6bc5c04e7bb11086b9b3ef929cae5858f4035cdc1a0e1ad3'

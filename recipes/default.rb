@@ -11,6 +11,7 @@ node.default['java']['jdk_version'] = '7'
 node.default['java']['oracle']['accept_oracle_download_terms'] = true
 include_recipe 'java'
 
-include_recipe "atlassian::jira"
 include_recipe "atlassian::confluence"
+include_recipe "atlassian::jira"
+include_recipe "atlassian::proxy"
 
