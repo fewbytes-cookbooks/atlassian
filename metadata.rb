@@ -1,0 +1,12 @@
+name             'atlassian'
+maintainer       ''
+maintainer_email ''
+license          ''
+description      'Installs/Configures atlassian'
+long_description 'Installs/Configures atlassian'
+version          '0.1.0'
+
+depends 'apt'
+depends 'ark'
+depends 'java'
+depends 'runit'
