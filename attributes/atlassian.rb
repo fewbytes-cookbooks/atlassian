@@ -17,6 +17,7 @@ default['atlassian']['db']['port'] = '3306'
 default['atlassian']['db']['base_url'] = "jdbc:mysql://#{node['atlassian']['db']['server']}:#{node['atlassian']['db']['port']}/"
 default['atlassian']['db']['params'] = 'useUnicode=true&amp;characterEncoding=UTF8&amp;sessionVariables=storage_engine=InnoDB'
 
+default['atlassian']['aws']['volume_id'] = ""
 
 # Confluence
 default['atlassian']['confluence']['servername'] = 'confluence.mydomain.com'
@@ -35,6 +36,10 @@ default['atlassian']['confluence']['work_dir'] = ::File.join(node['atlassian']['
 default['atlassian']['confluence']['lib_dir'] = ::File.join(node['atlassian']['confluence']['confluence_dir'], 'confluence/WEB-INF/lib')
 default['atlassian']['confluence']['confluence_init_path'] = ::File.join(default['atlassian']['confluence']['confluence_dir'], 'confluence/WEB-INF/classes/confluence-init.properties')
 default['atlassian']['confluence']['mysql_connector_jar_path'] = ::File.join(node['atlassian']['confluence']['lib_dir'], node['atlassian']['mysql_connector']['jar_file'])
+
+default['atlassian']['confluence']['db']['name'] = 'confluence'
+default['atlassian']['confluence']['db']['username'] = 'confluenceuser'
+default['atlassian']['confluence']['db']['password'] = 'confluencepass'
 
 # Jira
 default['atlassian']['jira']['servername'] = 'jira.mydomain.com'
@@ -55,6 +60,6 @@ default['atlassian']['jira']['mysql_connector_jar_path'] = ::File.join(node['atl
 
 default['atlassian']['jira']['db']['name'] = 'jiradb'
 default['atlassian']['jira']['db']['username'] = 'jiradbuser'
-default['atlassian']['jira']['db']['password'] = 'password'
+default['atlassian']['jira']['db']['password'] = 'jirapassword'
 default['atlassian']['jira']['db']['url'] = "#{node['atlassian']['db']['base_url']}/#{node['atlassian']['jira']['db']['name']}?#{node['atlassian']['db']['params']}"
 
