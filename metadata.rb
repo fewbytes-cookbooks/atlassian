@@ -8,6 +8,7 @@ version          '0.1.0'
 
 depends 'apt'
 depends 'ark'
+depends 'aws'
 depends 'java'
 depends 'nginx'
 depends 'runit'

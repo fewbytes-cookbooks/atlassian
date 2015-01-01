@@ -2,6 +2,7 @@ include_attribute "ark"
 include_attribute "nginx"
 
 default['nginx']['default_site_enabled'] = false
+default['nginx']['pid'] = '/run/nginx.pid'
 
 default['atlassian']['mysql_connector']['version'] = '5.1.34'
 default['atlassian']['mysql_connector']['tgz_file'] = "mysql-connector-java-#{node['atlassian']['mysql_connector']['version']}.tar.gz"
@@ -18,6 +19,10 @@ default['atlassian']['db']['base_url'] = "jdbc:mysql://#{node['atlassian']['db']
 default['atlassian']['db']['params'] = 'useUnicode=true&amp;characterEncoding=UTF8&amp;sessionVariables=storage_engine=InnoDB'
 
 default['atlassian']['aws']['volume_id'] = ""
+default['atlassian']['aws']['target_device'] = "/dev/xvdi"
+default['atlassian']['aws']['target_fs'] = "ext4"
+
+default['atlassian']['home']['base'] = "/srv"
 
 # Confluence
 default['atlassian']['confluence']['servername'] = 'confluence.mydomain.com'
@@ -27,7 +32,7 @@ default['atlassian']['confluence']['version'] = '5.6.5'
 default['atlassian']['confluence']['checksum'] = '013b9fc8d20f5947637abefea1386532bb484134de57a70f7fd78d177352bd4d'
 default['atlassian']['confluence']['group'] = 'confluence'
 default['atlassian']['confluence']['user'] = 'confluence'
-default['atlassian']['confluence']['home'] = '/srv/confluence'
+default['atlassian']['confluence']['home'] = ::File.join(node['atlassian']['home']['base'], 'confluence')
 default['atlassian']['confluence']['confluence_dir'] = ::File.join(node['ark']['prefix_root'], 'confluence')
 default['atlassian']['confluence']['log_dir'] = '/var/log/confluence'
 default['atlassian']['confluence']['conf_dir'] = ::File.join(node['atlassian']['confluence']['confluence_dir'], 'conf')
@@ -49,7 +54,7 @@ default['atlassian']['jira']['version'] = '6.3.12'
 default['atlassian']['jira']['checksum'] = 'e25469a801c6630e6bc5c04e7bb11086b9b3ef929cae5858f4035cdc1a0e1ad3'
 default['atlassian']['jira']['group'] = 'jira'
 default['atlassian']['jira']['user'] = 'jira'
-default['atlassian']['jira']['home'] = '/srv/jira'
+default['atlassian']['jira']['home'] = ::File.join(node['atlassian']['home']['base'], 'jira')
 default['atlassian']['jira']['log_dir'] = '/var/log/jira'
 default['atlassian']['jira']['jira_dir'] = ::File.join(node['ark']['prefix_root'], 'jira')
 default['atlassian']['jira']['conf_dir'] = ::File.join(node['atlassian']['jira']['jira_dir'], 'conf')
