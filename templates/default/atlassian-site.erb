@@ -13,4 +13,8 @@ server {
       proxy_pass http://localhost:<%= @port %>/;
   }
 
+  location /status {
+      stub_status on;
+  }
+
 }
