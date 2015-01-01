@@ -15,7 +15,7 @@ default['atlassian']['mysql_connector']['jar_path'] = ::File.join(Chef::Config['
 
 default['atlassian']['db']['server'] = 'dbserver'
 default['atlassian']['db']['port'] = '3306'
-default['atlassian']['db']['base_url'] = "jdbc:mysql://#{node['atlassian']['db']['server']}:#{node['atlassian']['db']['port']}/"
+default['atlassian']['db']['base_url'] = "jdbc:mysql://#{node['atlassian']['db']['server']}:#{node['atlassian']['db']['port']}"
 default['atlassian']['db']['params'] = 'useUnicode=true&amp;characterEncoding=UTF8&amp;sessionVariables=storage_engine=InnoDB'
 
 default['atlassian']['aws']['volume_id'] = ""
