@@ -40,6 +40,12 @@ put_mysql_connector node['atlassian']['jira']['mysql_connector_jar_path'] do
  service "runit_service[jira]"
 end
 
+template ::File.join(node['atlassian']['jira']['conf_dir'], 'server.xml') do
+  source 'jira-server.xml.erb'
+  mode '0644'
+  notifies :restart, 'runit_service[jira]'
+end
+
 template ::File.join(node['atlassian']['jira']['home'], 'dbconfig.xml') do
     mode '0644'
     owner node['atlassian']['jira']['user']
@@ -63,4 +69,3 @@ runit_service "jira" do
         log_dir: node['atlassian']['jira']['log_dir'],
     })
 end
-

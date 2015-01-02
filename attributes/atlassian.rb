@@ -68,3 +68,5 @@ default['atlassian']['jira']['db']['username'] = 'jiradbuser'
 default['atlassian']['jira']['db']['password'] = 'jirapassword'
 default['atlassian']['jira']['db']['url'] = "#{node['atlassian']['db']['base_url']}/#{node['atlassian']['jira']['db']['name']}?#{node['atlassian']['db']['params']}"
 
+# proxy settings
+default['atlassian']['proxy']['external_ssl'] = false

@@ -31,6 +31,12 @@ end
     end
 end
 
+template File.join(node['atlassian']['confluence']['conf_dir'], 'server.xml') do
+  source 'confluence-server.xml.erb'
+  mode '0644'
+  notifies :restart, 'runit_service[confluence]'
+end
+
 template node['atlassian']['confluence']['confluence_init_path'] do
     mode '0644'
     owner node['atlassian']['confluence']['user']
@@ -61,4 +67,3 @@ runit_service "confluence" do
         log_dir: node['atlassian']['confluence']['log_dir'],
     })
 end
-
