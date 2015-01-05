@@ -1,5 +1,7 @@
 include_attribute "ark"
+include_attribute "backup"
 include_attribute "nginx"
+
 
 default['nginx']['default_site_enabled'] = false
 default['nginx']['pid'] = '/run/nginx.pid'
@@ -24,6 +26,14 @@ default['atlassian']['aws']['target_fs'] = "ext4"
 
 default['atlassian']['home']['base'] = "/srv"
 
+default['atlassian']['backup']['s3_keep_num'] = "7"
+default['atlassian']['backup']['s3_region'] = "us-east-1"
+default['atlassian']['backup']['s3_bucket'] = "my_bucket"
+default['atlassian']['backup']['s3_path'] = "/atlassian"
+default['atlassian']['backup']['temp_dir'] = ::File.join(node['atlassian']['home']['base'], "backup_temp")
+
+default['backup']['addl_flags'] = "--tmp-path=#{node['atlassian']['backup']['temp_dir']}"
+
 # Confluence
 default['atlassian']['confluence']['servername'] = 'confluence.mydomain.com'
 default['atlassian']['confluence']['port'] = '8090'
@@ -46,6 +56,9 @@ default['atlassian']['confluence']['db']['name'] = 'confluence'
 default['atlassian']['confluence']['db']['username'] = 'confluenceuser'
 default['atlassian']['confluence']['db']['password'] = 'confluencepass'
 
+default['atlassian']['confluence']['backup']['hour'] = 4
+default['atlassian']['confluence']['backup']['minute'] = 0
+
 # Jira
 default['atlassian']['jira']['servername'] = 'jira.mydomain.com'
 default['atlassian']['jira']['port'] = '8080'
@@ -67,6 +80,9 @@ default['atlassian']['jira']['db']['name'] = 'jiradb'
 default['atlassian']['jira']['db']['username'] = 'jiradbuser'
 default['atlassian']['jira']['db']['password'] = 'jirapassword'
 default['atlassian']['jira']['db']['url'] = "#{node['atlassian']['db']['base_url']}/#{node['atlassian']['jira']['db']['name']}?#{node['atlassian']['db']['params']}"
+
+default['atlassian']['jira']['backup']['hour'] = 2
+default['atlassian']['jira']['backup']['minute'] = 0
 
 # proxy settings
 default['atlassian']['proxy']['external_ssl'] = false

@@ -55,7 +55,18 @@ put_mysql_connector node['atlassian']['confluence']['mysql_connector_jar_path'] 
  service "runit_service[confluence]"
 end
 
-#TODO: template confluence.cfg.xml in convluence's home (license and mysql configuration)
+#TODO: template confluence.cfg.xml in confluence's home (license and mysql configuration)
+
+backup_atlassian "Confluence" do
+    home_dir node['atlassian']['confluence']['home']
+
+    db_name node['atlassian']['confluence']['db']['name']
+    db_user node['atlassian']['confluence']['db']['username']
+    db_pass node['atlassian']['confluence']['db']['password']
+
+    hour node['atlassian']['confluence']['backup']['hour']
+    minute node['atlassian']['confluence']['backup']['minute']
+end
 
 runit_service "confluence" do
     owner node['atlassian']['confluence']['user']

@@ -58,6 +58,17 @@ template ::File.join(node['atlassian']['jira']['home'], 'dbconfig.xml') do
    notifies :restart, "runit_service[jira]"
 end
 
+backup_atlassian "Jira" do
+    home_dir node['atlassian']['jira']['home']
+
+    db_name node['atlassian']['jira']['db']['name']
+    db_user node['atlassian']['jira']['db']['username']
+    db_pass node['atlassian']['jira']['db']['password']
+
+    hour node['atlassian']['jira']['backup']['hour']
+    minute node['atlassian']['jira']['backup']['minute']
+end
+
 runit_service "jira" do
     owner node['atlassian']['jira']['user']
     group node['atlassian']['jira']['group']
