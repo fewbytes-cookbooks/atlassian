@@ -52,5 +52,9 @@ define :backup_atlassian,   :db_name => nil, :db_user => nil, :db_pass => nil, :
             :minute => params[:minute],
             :hour   => params[:hour]
         })
+
+        cron_options({
+            :path => "/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin"
+        })
     end
 end
