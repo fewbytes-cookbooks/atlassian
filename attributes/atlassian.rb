@@ -67,6 +67,7 @@ default['atlassian']['jira']['version'] = '6.3.12'
 default['atlassian']['jira']['checksum'] = 'e25469a801c6630e6bc5c04e7bb11086b9b3ef929cae5858f4035cdc1a0e1ad3'
 default['atlassian']['jira']['group'] = 'jira'
 default['atlassian']['jira']['user'] = 'jira'
+default['atlassian']['jira']['java_opts'] = '-Dfile.encoding=utf-8'
 default['atlassian']['jira']['home'] = ::File.join(node['atlassian']['home']['base'], 'jira')
 default['atlassian']['jira']['log_dir'] = '/var/log/jira'
 default['atlassian']['jira']['jira_dir'] = ::File.join(node['ark']['prefix_root'], 'jira')

@@ -75,6 +75,7 @@ runit_service "jira" do
     options({
         user: node['atlassian']['jira']['user'],
         group: node['atlassian']['jira']['group'],
+        java_opts: node['atlassian']['jira']['java_opts'],
         jira_home: node['atlassian']['jira']['home'],
         directory: node['atlassian']['jira']['jira_dir'],
         log_dir: node['atlassian']['jira']['log_dir'],

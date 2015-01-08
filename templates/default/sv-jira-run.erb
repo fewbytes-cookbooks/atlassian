@@ -2,6 +2,7 @@
 
 exec 2>&1
 
+export JAVA_OPTS="<%=@options[:java_opts]%>"
 export JIRA_HOME="<%=@options[:jira_home]%>"
 
 cd <%=@options[:directory]%>
