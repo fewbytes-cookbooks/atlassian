@@ -18,6 +18,13 @@ server {
       proxy_redirect default;
   }
 
+  location /s {
+      proxy_pass http://localhost:<%= @port %>;
+      proxy_redirect default;
+      proxy_cache static;
+      proxy_ignore_headers "Set-Cookie";
+  }
+
   location /status {
       stub_status on;
   }

@@ -24,10 +24,17 @@ template "#{node['nginx']['dir']}/sites-available/confluence" do
     })
 end
 
+file ::File.join(node['nginx']['dir'], 'conf.d', 'cache.conf') do
+  content <<-EOF
+proxy_cache_path /var/cache/nginx keys_zone=static:60m levels=2 max_size=200m;
+EOF
+  mode "0644"
+  notifies :restart, "service[nginx]"
+end
+
 nginx_site 'jira' do
     enable true
 end
 nginx_site 'confluence' do
     enable true
 end
-
