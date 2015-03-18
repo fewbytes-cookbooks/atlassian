@@ -31,6 +31,15 @@ end
     end
 end
 
+template File.join(node['atlassian']['confluence']['bin_dir'], 'setenv.sh') do
+    # confluence binaries owned by root
+    mode '0755'
+    variables({
+        max_perm_size: node['atlassian']['confluence']['max_perm_size'],
+    })
+   notifies :restart, "runit_service[confluence]"
+end
+
 template File.join(node['atlassian']['confluence']['conf_dir'], 'server.xml') do
   source 'confluence-server.xml.erb'
   mode '0644'

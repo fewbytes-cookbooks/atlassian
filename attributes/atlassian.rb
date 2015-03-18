@@ -35,6 +35,7 @@ default['atlassian']['backup']['temp_dir'] = ::File.join(node['atlassian']['home
 default['backup']['addl_flags'] = "--tmp-path=#{node['atlassian']['backup']['temp_dir']}"
 
 # Confluence
+default['atlassian']['confluence']['max_perm_size'] = '384m'
 default['atlassian']['confluence']['servername'] = 'confluence.mydomain.com'
 default['atlassian']['confluence']['port'] = '8090'
 default['atlassian']['confluence']['url'] = 'http://downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-5.6.5.tar.gz'
@@ -45,6 +46,7 @@ default['atlassian']['confluence']['user'] = 'confluence'
 default['atlassian']['confluence']['home'] = ::File.join(node['atlassian']['home']['base'], 'confluence')
 default['atlassian']['confluence']['confluence_dir'] = ::File.join(node['ark']['prefix_root'], 'confluence')
 default['atlassian']['confluence']['log_dir'] = '/var/log/confluence'
+default['atlassian']['confluence']['bin_dir'] = ::File.join(node['atlassian']['confluence']['confluence_dir'], 'bin')
 default['atlassian']['confluence']['conf_dir'] = ::File.join(node['atlassian']['confluence']['confluence_dir'], 'conf')
 default['atlassian']['confluence']['temp_dir'] = ::File.join(node['atlassian']['confluence']['confluence_dir'], 'temp')
 default['atlassian']['confluence']['work_dir'] = ::File.join(node['atlassian']['confluence']['confluence_dir'], 'work')
