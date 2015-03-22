@@ -18,6 +18,8 @@ define :backup_atlassian,   :db_name => nil, :db_user => nil, :db_pass => nil, :
 
 
     include_recipe "backup"
+    
+    package "mysql-client"  # provides mysqldump cli for mysql backup
 
     backup_model params[:name] do
 
