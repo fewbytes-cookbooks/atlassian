@@ -89,3 +89,4 @@ default['atlassian']['jira']['backup']['minute'] = 0
 
 # proxy settings
 default['atlassian']['proxy']['external_ssl'] = false
+default['atlassian']['proxy']['client_max_body_size'] = '100M'  # Change this to allow larger attachments

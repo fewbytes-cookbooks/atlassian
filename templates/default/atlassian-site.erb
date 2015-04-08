@@ -11,7 +11,7 @@ server {
   proxy_set_header X-Forwarded-Proto $http_x_forwarded_proto;
 <% end -%>
   proxy_set_header Host $http_host;
-  client_max_body_size 10M;
+  client_max_body_size <%= node['atlassian']['proxy']['client_max_body_size'] %>;
 
   location / {
       proxy_pass http://localhost:<%= @port %>/;
